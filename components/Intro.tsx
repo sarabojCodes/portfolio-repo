@@ -9,9 +9,11 @@ import { FaGithubSquare } from 'react-icons/fa'
 import profile from '@/public/profile.png'
 
 import { useSectionInView } from '@/lib/hookes'
+import { useAcitveSectionContext } from '@/context/active-section-context'
 // import resume from '@/public/CV.pdf'
 const Intro = () => {
     const { ref } = useSectionInView({ sectionName: "Home", threshold: 0.5 })
+    const  {setActiveSection,setTimeOfLastClick} = useAcitveSectionContext()
 
 
 
@@ -73,21 +75,25 @@ const Intro = () => {
                     outline-none focus:scale-110 hover:scale-110 hover:bg-gray-950 active:scale-105 transition
                      group
                     '
+                    onClick={() => {
+                        setActiveSection("Contact")
+                        setTimeOfLastClick(Date.now())
+                    }}
                 >
                     Contact me here
                     <BsArrowRight className='opacity-70 group-hover:translate-x-1 transition' />
                 </Link>
 
                 <a className='bg-white px-7 py-3 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110  active:scale-105 transition
-                     group cursor-pointer  border border-black/10' href='/CV.pdf' download>
+                     group cursor-pointer  borderBlack' href='/CV.pdf' download>
                     Download CV <HiDownload className='opacity-60 group-hover:translate-y-1 transition' />
                 </a>
                 <a className="bg-white p-4 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110  active:scale-105 transition
-                     group cursor-pointer  border border-black/10">
+                     group cursor-pointer  borderBlack">
                     <BsLinkedin />
                 </a>
                 <a className="bg-white p-4 flex items-center gap-2 rounded-full outline-none focus:scale-110 hover:scale-110  active:scale-105 transition
-                     group cursor-pointer  border border-black/10 text-[1.35rem]">
+                     group cursor-pointer  borderBlack text-[1.35rem]">
                     <FaGithubSquare />
                 </a>
             </motion.div>

@@ -12,20 +12,41 @@ const Experience = () => {
     return (
         <section ref={ref} id='experience' className='mb-28 max-w-[45rem] text-center leading-8 sm:mb40 scroll-mt-28'>
             <SectionHeading>My Experience</SectionHeading>
-            <div className='sm:w-[40rem] flex gap-3 flex-col'>
-                {
-                    experiencesData.map((items, index) => (
-                        <div
-                         key={index}
-                            className='p-3 w-full border border-gray/[0.8] rounded-md'
+
+            <VerticalTimeline>
+                {experiencesData.map((item, index) => (
+                    <React.Fragment key={index}>
+                        <VerticalTimelineElement
+                            contentStyle={{
+                                visibility: "visible",
+                                background: "#f3f4f6",
+                                boxShadow: "none",
+                                border: "1px solid rgba(0,0,0,0.05)",
+                                textAlign: "center",
+                                padding: "1.3rem 2rem"
+                            }}
+                            contentArrowStyle={{
+                                visibility: "visible",
+                                borderRight: "0.4rem solid #9ca3af"
+
+                            }}
+                            date={item.date}
+                            icon={item.icon}
+                            iconStyle={{
+                                visibility: "visible",
+                                background: "white",
+                                fontSize: "1.5rem"
+
+
+                            }}
                         >
-                            <h3 className='text-xl font-medium'>{items.title}</h3>
-                            <p className='text-gray-800' >{items.location}</p>
-                            <p className='text-sm italic text-gray-500'>{items.description}</p>
-                        </div>
-                    ))
-                }
-            </div>
+                            <h3 className='font-semibold capitalize' >{item.title}</h3>
+                            <p className='font-normal !mt-0'>{item.location}</p>
+                            <p className='!mt-1 !font-normal text-gray-700'>{item.description}</p>
+                        </VerticalTimelineElement>
+                    </React.Fragment>
+                ))}
+            </VerticalTimeline>
         </section>
     )
 }

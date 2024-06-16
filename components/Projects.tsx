@@ -12,26 +12,17 @@ const Projects = () => {
     const {ref} = useSectionInView({sectionName:"Projects",threshold:0.5})
 
     return (
-        <section
-        ref={ref}
-        className='scroll-mt-28 mb-28'
-        id='projects'
-        >
-            <SectionHeading>My Projects</SectionHeading>
-            <div>
-                {
-                    projectsData.map((project, index) => (
-                        <React.Fragment
-
-                            key={index}
-                        >
-                            <Project {...project} />
-                        </React.Fragment>
-                    ))
-                }
-            </div>
+        <section ref={ref} id="projects" className="scroll-mt-28 mb-28">
+          <SectionHeading>My projects</SectionHeading>
+          <div>
+            {projectsData.map((project, index) => (
+              <React.Fragment key={index}>
+                <Project {...project} />
+              </React.Fragment>
+            ))}
+          </div>
         </section>
-    )
+      );
 }
 
 
