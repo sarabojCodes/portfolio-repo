@@ -1,15 +1,22 @@
 "use client"
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { BsArrowRight, BsLinkedin } from 'react-icons/bs'
 import { HiDownload } from 'react-icons/hi'
 import { FaGithubSquare } from 'react-icons/fa'
+import profile from '@/public/profile.png'
+
+import { useSectionInView } from '@/lib/hookes'
 // import resume from '@/public/CV.pdf'
 const Intro = () => {
+    const { ref } = useSectionInView({ sectionName: "Home", threshold: 0.5 })
+
+
+
     return (
-        <section id='home' className='mb-2 max-w-[50rem] text-center  sm:mb-0  scroll-mt-[100rem]'>
+        <section ref={ref} id='home' className='mb-2 max-w-[50rem] text-center  sm:mb-0  scroll-mt-[100rem]'>
             <div className='flex items-center justify-center'>
                 <div className='relative'>
                     <motion.div
@@ -20,12 +27,12 @@ const Intro = () => {
                             duration: 0.2
                         }}
                     >
-                        <Image src={"https://media.istockphoto.com/id/1393872009/photo/african-american-man-with-african-hairstyle-standing-over-isolated-pink-background.jpg?s=1024x1024&w=is&k=20&c=5jRHEBBh0dF4s5rgqEo3e09eZktMZc_EOiv9IoZYszg="} alt='Saraboj portrait'
-                            width={"192"}
-                            height={"192"}
+                        <Image src={profile} alt='Saraboj portrait'
+                            width={200}
+                            height={200}
                             quality={"95"}
                             priority={true}
-                            className='h-24 w-24 rounded-full object-cover border-[0.35rem] border-white shadow-xl'
+                            className='h-28 w-28 rounded-full object-cover border-[0.35rem] border-white shadow-xl'
                         />
                     </motion.div>
                     <motion.span

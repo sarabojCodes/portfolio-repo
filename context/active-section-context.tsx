@@ -1,9 +1,7 @@
 'use client'
+import type { SectionName } from '@/lib/types'
 import React, { createContext, useContext, useState } from 'react'
-import { links } from '@/lib/data'
 
-
-type SectionName = typeof links[number]["name"];
 
 type ActiveContextProps = {
   children: React.ReactNode
@@ -12,21 +10,24 @@ type ActiveContextProps = {
 
 type ActiveHeaderContextType = {
   activeSection: SectionName;
-  setActiveSection: React.Dispatch<React.SetStateAction<SectionName>>
+  setActiveSection: React.Dispatch<React.SetStateAction<SectionName>>,
+  timeOfLastClick: number,
+  setTimeOfLastClick: React.Dispatch<React.SetStateAction<number>>
 }
 
-  const ActiveHeaderSectionContext = createContext<ActiveHeaderContextType | null>(null)
+const ActiveHeaderSectionContext = createContext<ActiveHeaderContextType | null>(null)
 
 const AcitveSectiionContextProvider = ({ children }: ActiveContextProps) => {
   const [activeSection, setActiveSection] = useState<SectionName>('Home')
-  return (<ActiveHeaderSectionContext.Provider value={{ activeSection,setActiveSection}}>
+  const [timeOfLastClick, setTimeOfLastClick] = useState(0)
+  return (<ActiveHeaderSectionContext.Provider value={{ activeSection, setActiveSection, timeOfLastClick, setTimeOfLastClick }}>
     {children}
   </ActiveHeaderSectionContext.Provider>)
 }
 
-export function useAcitveSectionContext(){
+export function useAcitveSectionContext() {
   const context = useContext(ActiveHeaderSectionContext)
-  if(context === null){
+  if (context === null) {
     throw new Error(
       "useAciveSections"
     )
